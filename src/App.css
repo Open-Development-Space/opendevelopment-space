@@ -17,6 +17,38 @@
   }
 }
 
+@font-face {
+    font-family: 'TitleFont';
+    src: url('src/assets/fonts/Alphazet-SemiBold.woff2') format('woff2'),
+         url('src/assets/fonts/Alphazet-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'BodyFont';
+    src: url('src/assets/fonts/Alphazet-Light.woff2') format('woff2'),
+         url('src/assets/fonts/Alphazet-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: light;
+    --blue: #0d50d5;
+    --ink: #14213b;
+    --paper: #f3f5fa;
+    --white: #fff;
+    --lime: #e7f36b;
+    --coral: #ff755b;
+    --line: #dce2ed;
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
 .hero {
   position: relative;
 
