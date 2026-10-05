@@ -25,6 +25,9 @@
     --lime: #e7f36b;
     --coral: #ff755b;
     --line: #dce2ed;
+    --icon: url('assets/images/osd\ logo\ icon.png');
+    --logo: url('assets/images/osd\ logo\ icon.png');
+    --logo_long: url('assets/images/osd\ logo\ icon.png');
     font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -51,23 +54,38 @@
     padding: 0 24px;
 }
 
+#three {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+}
+
 .brand,
 .top-bar nav {
     display: flex;
     align-items: center;
     gap: 16px;
+
+    translate: 0 6px;
 }
 
 .brand {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 24px;
     text-decoration: none;
+    color: var(--blue);
 }
 
 .brand img {
-    width: 28px;
-    height: 28px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
-}
 
+    background-color: var(--blue); /* The color you want the icon to become */
+    -webkit-mask-image: var(--icon);
+    mask-image: var(--icon);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+}
 .top-bar nav a {
     color: inherit;
 }
@@ -78,8 +96,8 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    padding: 8px;
+    gap: 16px;
+    padding: 16px;
 }
 
 .bento-grid section {
@@ -92,7 +110,7 @@
     grid-row: span 2;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 800px) {
     .top-bar {
         padding: 0 12px;
     }
