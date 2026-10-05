@@ -2,7 +2,7 @@
     font-family: 'TitleFont';
     src: url('/assets/fonts/Alphazet-SemiBold.woff2') format('woff2'),
          url('/assets/fonts/Alphazet-SemiBold.woff') format('woff');
-    font-weight: 600;
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
@@ -19,12 +19,11 @@
 :root {
     color-scheme: light;
     --blue: #0d50d5;
-    --ink: #14213b;
-    --paper: #f3f5fa;
-    --white: #fff;
-    --lime: #e7f36b;
-    --coral: #ff755b;
-    --line: #dce2ed;
+    --ink: #332a24;
+    --paper: #fff8ed;
+    --gold: #ffdd35;
+    --coral: #ff5630;
+    --line: #d4cbbe;
     --icon: url('assets/images/osd\ logo\ icon.png');
     --logo: url('assets/images/osd\ logo\ icon.png');
     --logo_long: url('assets/images/osd\ logo\ icon.png');
@@ -45,49 +44,19 @@
     flex-direction: column;
 }
 
-.top-bar {
-    min-height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 0 24px;
-}
-
-#three {
+#apply {
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
 }
 
-.brand,
-.top-bar nav {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    translate: 0 6px;
+html {
+    scroll-behavior: smooth;
+    filter:blur(0.6px)
 }
 
-.brand {
-    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
-    font-size: 24px;
-    text-decoration: none;
-    color: var(--blue);
-}
-
-.brand img {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-
-    background-color: var(--blue); /* The color you want the icon to become */
-    -webkit-mask-image: var(--icon);
-    mask-image: var(--icon);
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-}
-.top-bar nav a {
-    color: inherit;
+line {
+    border-bottom: 1px solid var(--ink);
+    width: 100%;
+    opacity: 0.2;
 }
 
 .bento-grid {
@@ -95,38 +64,132 @@
     min-height: 0;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    padding: 16px;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 32px;
+    padding: 32px;
 }
 
 .bento-grid section {
     min-width: 0;
     min-height: 0;
-    border: 1px solid currentColor;
+    border: 0px solid currentColor;
+    border-radius: 32px;
+
+    padding: 16px;
+    display: flex;
 }
 
 .bento-grid section:first-child {
     grid-row: span 2;
 }
 
+#title {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue);
+    color: var(--paper);
+}
+
+#title .theme-toggle {
+    --theme-icon-scale: 1.5;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 0;
+    padding: 12px;
+    background: transparent;
+    cursor: pointer;
+}
+
+#title .theme-toggle img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transform: scale(var(--theme-icon-scale));
+    filter: brightness(0) invert(1);
+    pointer-events: none;
+}
+
+#title .theme-toggle:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 50%;
+}
+
+#title .title-logo-outline {
+    position: absolute;
+    right: -100px;
+    bottom: -140px;
+    width: min(70%, 360px);
+    aspect-ratio: 1;
+    object-fit: contain;
+    opacity: 1;
+    pointer-events: none;
+}
+
+#title #title-text {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    line-height: 0.9;
+}
+#title #space-text {
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    color: var(--gold);
+    font-size: 3rem;
+    line-height: 0.9;
+}
+
+#projects {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gold);
+    color: var(--card-ink);
+}
+#projects .title{
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 3rem;
+    margin-left: 16px;
+}
+
+#contribute {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--coral);
+    color: var(--card-ink);
+}
+#contribute .title{
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    margin-left: 8px;
+}
+
 @media (max-width: 800px) {
-    .top-bar {
-        padding: 0 12px;
-    }
-
-    .brand,
-    .top-bar nav {
-        gap: 8px;
-    }
-
-    .brand span {
-        max-width: 130px;
-    }
-
     .bento-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, minmax(0, 1fr));
+        grid-template-rows: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    }
+
+    #title {
+        order: 1;
+    }
+
+    #projects {
+        order: 2;
+    }
+
+    #contribute {
+        order: 3;
     }
 
     .bento-grid section:first-child {

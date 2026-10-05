@@ -16,20 +16,53 @@
     font-display: swap;
 }
 
+@property --ink {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #332a24;
+}
+
+@property --paper {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #fff8ed;
+}
+
+@property --line {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #d4cbbe;
+}
+
 :root {
     color-scheme: light;
     --blue: #0d50d5;
-    --ink: #14213b;
-    --paper: #f3f5fa;
+    --ink: #332a24;
+    --paper: #fff8ed;
     --white: #fff;
-    --lime: #e7f36b;
-    --coral: #ff755b;
-    --line: #dce2ed;
+    --gold: #ffdd35;
+    --coral: #ff5630;
+    --line: #d4cbbe;
+    --card-ink: #332a24;
+    transition: --ink 400ms ease, --paper 400ms ease, --line 400ms ease;
     font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     color: var(--ink);
     background: var(--paper);
+}
+
+:root[data-theme='dark'] {
+    color-scheme: dark;
+    --ink: #fff8ed;
+    --paper: #171923;
+    --line: #414354;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        transition: none;
+    }
 }
 
 * {
@@ -46,8 +79,20 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: var(--paper);
-    background-image: radial-gradient(#cdd7e9 0.7px, transparent 0.7px);
-    background-size: 18px 18px;
+    background-image: radial-gradient(var(--line) 0.7px, transparent 0.7px);
+    background-size: 32px 32px;
+}
+
+body::after {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    mix-blend-mode: multiply;
+    content: '';
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 a {
