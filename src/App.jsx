@@ -16,7 +16,7 @@ function SiteHeader({ contributionPage = false }) {
                 ) : (
                     <>
                         <a href="#projects">What we do</a>
-                        <a href="#up-next">What’s next</a>
+                        <a href="#up-next">What's next</a>
                     </>
                 )}
                 <a className="nav-cta" href={contributionPage ? '/' : '/contribute'}>
@@ -36,7 +36,7 @@ function HomePage() {
                     <p className="eyebrow"><span className="status-dot" /> A space to build in the open</p>
                     <h1>Open<br />Development<br /><span>Space.</span></h1>
                     <p className="title-caption">Ideas grow better when we build them together.</p>
-                    <a className="text-link title-link" href={repositoriesUrl}>
+                    <a className="text-link title-link" href="https://github.com/Open-Development-Space">
                         Explore our GitHub <span aria-hidden="true">↗</span>
                     </a>
                     <span className="orbit orbit-one" aria-hidden="true" />
@@ -52,7 +52,7 @@ function HomePage() {
                         <h2>Make room for good ideas.</h2>
                         <p>We bring people together to explore ideas, make useful things, and share the work openly.</p>
                     </div>
-                    <a className="text-link" href={repositoriesUrl}>
+                    <a className="text-link" href="https://github.com/orgs/Open-Development-Space/repositories">
                         See our repositories <span aria-hidden="true">↗</span>
                     </a>
                 </section>
@@ -64,7 +64,7 @@ function HomePage() {
                     </div>
                     <div className="involve-content">
                         <div>
-                            <h2>There’s a place for you here.</h2>
+                            <h2>There's a place for you here.</h2>
                             <p>Find a project, bring a skill, or just start a conversation. Every contribution moves us forward.</p>
                         </div>
                         <a className="button-link" href="/contribute">
@@ -76,7 +76,7 @@ function HomePage() {
 
                 <section className="card next-card" id="up-next">
                     <div className="card-topline">
-                        <span className="card-number">03 / WHAT’S NEXT</span>
+                        <span className="card-number">03 / WHAT'S NEXT</span>
                         <span className="card-icon" aria-hidden="true">→</span>
                     </div>
                     <div>
@@ -112,9 +112,9 @@ function ContributionPage() {
                     <ol className="contribution-steps">
                         <li><span>01</span><div><h2>Find a project</h2><p>Browse the repositories and see what catches your interest.</p></div></li>
                         <li><span>02</span><div><h2>Start a conversation</h2><p>Open an issue to ask a question, share an idea, or find a first task.</p></div></li>
-                        <li><span>03</span><div><h2>Build in the open</h2><p>Read the project’s contribution notes, then share your work with a pull request.</p></div></li>
+                        <li><span>03</span><div><h2>Build in the open</h2><p>Read the project's contribution notes, then share your work with a pull request.</p></div></li>
                     </ol>
-                    <a className="button-link contribution-button" href={repositoriesUrl}>
+                    <a className="button-link contribution-button" href="https://github.com/orgs/Open-Development-Space/repositories">
                         Browse GitHub repositories <span aria-hidden="true">↗</span>
                     </a>
                 </section>
