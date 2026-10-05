@@ -38,9 +38,7 @@
 
 html {
     min-width: 320px;
-    min-height: 100%;
-    background: var(--paper);
-    scroll-behavior: smooth;
+    min-height: 100svh;
 }
 
 body {
