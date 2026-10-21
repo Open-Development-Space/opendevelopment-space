@@ -41,13 +41,16 @@
     --coral:        #ff4430;
     --ink:          #332a24;
     --staticink:    #332a24;
-    --paper:        #fff8ed;
-    --staticpaper:  #fff8ed;
+    --paper:        #eee7dc;
+    --staticpaper:  #eee7dc;
     --blue50:       #0d50d550;
     --gold50:       #cdff3550;
     --coral50:      #ff443050;
     --ink50:        #332a2450;
+    --staticink50:        #332a2450;
     --paper50:      #fff8ed50;
+    --staticpaper50:      #fff8ed50;
+    --line: #dbd6cb;
     transition: --ink 400ms ease, --paper 400ms ease, --line 400ms ease;
     font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
     font-synthesis: none;
@@ -62,7 +65,7 @@
     --ink50: #fff8ed50;
     --paper: #171923;
     --paper50: #17192350;
-    --line: #414354;
+    --line: #212533;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,7 +76,7 @@
 
 * {
     box-sizing: border-box;
-}
+}  
 
 html {
     min-width: 320px;
@@ -85,8 +88,8 @@ body {
     min-height: 100vh;
     margin: 0;
     background-color: var(--paper);
-    background-image: radial-gradient(var(--ink) 0.7px, transparent 0.7px);
-    background-size: 32px 32px;
+    /*background-image: radial-gradient(var(--line) 1px, transparent 0.7px);*/
+    background-size: calc(50% / 16) calc(50% / 9);
 }
 
 body::after {
