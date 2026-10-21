@@ -18,11 +18,16 @@
 
 :root {
     color-scheme: light;
-    --blue: #0d50d5;
-    --ink: #332a24;
-    --paper: #fff8ed;
-    --gold: #ffdd35;
-    --coral: #ff5630;
+    --blue:     #0d50d5;
+    --gold:     #cdff35;
+    --coral:    #ff4430;
+    --ink:      #332a24;
+    --paper:    #fff8ed;
+    --blue50:   #0d50d550;
+    --gold50:   #cdff3550;
+    --coral50:  #ff443050;
+    --ink50:    #332a2450;
+    --paper50:  #fff8ed50;
     --line: #d4cbbe;
     --icon: url('assets/images/osd\ logo\ icon.png');
     --logo: url('assets/images/osd\ logo\ icon.png');
@@ -67,13 +72,15 @@ line {
     grid-template-rows: minmax(0, 1fr) minmax(0, 2fr);
     gap: 32px;
     padding: 32px;
+    max-height: 100vh;
 }
 
-.bento-grid section {
+.bento-grid .bento-section {
     min-width: 0;
     min-height: 0;
     border: 0px solid currentColor;
     border-radius: 32px;
+    backdrop-filter: blur(2px);
 
     padding: 16px;
     display: flex;
@@ -88,8 +95,10 @@ line {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: var(--blue);
-    color: var(--paper);
+    background-color: var(--blue50);
+    border: solid var(--blue);
+    box-shadow: inset 0 0 30px 0 var(--blue50);
+    color: var(--staticpaper);
 }
 
 #title .theme-toggle {
@@ -145,14 +154,22 @@ line {
     font-size: 3rem;
     line-height: 0.9;
 }
+#title #desc{
+    font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
+    text-align: right;
+    font-size: 2rem;
+    line-height: 0.7;
+}
 
 #projects {
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: var(--gold);
-    color: var(--card-ink);
+    background-color: var(--gold50);
+    border: solid var(--gold);
+    box-shadow: inset 0 0 30px 0 var(--gold50);
+    color: var(--ink);
 }
 #projects .title{
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
@@ -160,13 +177,68 @@ line {
     margin-left: 16px;
 }
 
+.projects-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 16px;
+    padding: 0px;
+}
+.projects-grid section {
+    min-width: 0;
+    min-height: 0;
+    border: 0px solid var(--ink50);
+    border-radius: 32px;
+    max-height: calc(1fr);
+
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.projects-grid #featured {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+}
+
+.projects-grid #recent {
+    grid-row: span 3 / span 3;
+    grid-row-start: 4;
+}
+
+.projects-grid #indev {
+    grid-row: span 2 / span 2;
+    grid-row-start: 4;
+}
+
+.projects-grid #upcoming {
+    grid-column-start: 2;
+    grid-row-start: 6;
+}
+
+.projects-grid #projects-title{
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+}
+.projects-grid #projects-body{
+    max-height: calc(100%);
+    overflow: scroll;
+    -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+}
+
+
 #contribute {
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: var(--coral);
-    color: var(--card-ink);
+    background-color: var(--coral50);
+    border: solid var(--coral);
+    box-shadow: inset 0 0 30px 0 var(--coral50);
 }
 #contribute .title{
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
