@@ -14,7 +14,7 @@ function App() {
     return (
         <div className="app-shell">
             <main className="bento-grid">
-                <div class="version"><br/>v0.15</div>
+                <div class="version"><br/>v0.16</div>
                 <section class="bento-section" id="title" aria-label="title">
                     <img className="title-logo-outline" src={logoOutline} alt="" aria-hidden="true" />
                     <button
@@ -41,6 +41,11 @@ function App() {
                         <div id="projects-title">
                             Featured
                             <div id="projects-name">opendevelopment-space</div>
+                            <button class="projects-button" type="button" aria-label="View on GitHub">
+                                <a href="https://github.com/Open-Development-Space/opendevelopment-space" target="_blank" rel="noopener noreferrer">
+                                    ↗
+                                </a>
+                            </button>
                         </div>
                         <div id="projects-body">
                             Home of the Open Development Space website. <br/>
@@ -51,16 +56,26 @@ function App() {
                     <section class="projects-section" id="projects-recent">
                         <div id="projects-title">
                             Recent
-                            <div id="projects-name">Project Name</div>
+                            <div id="projects-name">EMPTY</div>
+                            <button class="projects-button" type="button" aria-label="View on GitHub">
+                                <a href="https://github.com/Open-Development-Space" target="_blank" rel="noopener noreferrer">
+                                    ↗
+                                </a>
+                            </button>
                         </div>
                         <div id="projects-body">
-                            Recent body text.
+                            There is nothing to show here yet, but there will be soon.
                         </div>
                     </section>
                     <section class="projects-section" id="projects-indev">
                         <div id="projects-title">
                             InDev
                             <div id="projects-name">resKern</div>
+                            <button class="projects-button" type="button" aria-label="View on GitHub">
+                                <a href="https://github.com/Open-Development-Space/resKern" target="_blank" rel="noopener noreferrer">
+                                    ↗
+                                </a>
+                            </button>
                         </div>
                         <div id="projects-body">
                             Rust based kernel to learn with.

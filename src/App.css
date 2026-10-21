@@ -201,6 +201,7 @@ line {
     font-size: 1.5rem;
     display: flex;
     flex-direction: row;
+    width: auto;
     border-bottom: 1px solid var(--staticink50);
 }
 #projects-name{
@@ -218,6 +219,19 @@ line {
     font-size: 0.85rem;
     -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+}
+.projects-button{
+    background: none;
+    border: none;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    margin-left: auto;
+    transition: translate 0.25s ease-out;
+}
+.projects-button:hover{
+    translate: 3px -3px;
+    transition: translate 0.25s ease-out;
 }
 
 #contribute-title-panel {
