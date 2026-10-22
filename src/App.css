@@ -45,6 +45,7 @@
 html {
     scroll-behavior: smooth;
 }
+
 a {
     text-decoration: none;
 }
@@ -140,6 +141,7 @@ line {
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
     font-size: 2rem;
     line-height: 0.9;
+    translate: 0.25em;
 }
 #title #space-text {
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
@@ -161,6 +163,7 @@ line {
     font-size: 2rem;
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
     margin-left: 0.1em;
+    line-height: 0.7;
     translate: 0px 4px;
     transition: translate 0.1s ease-out;
 }
@@ -317,25 +320,84 @@ line {
     padding: 8px;
 }
 
+@media (max-width: 1300px) {
+    .bento-grid {
+        grid-template-columns: 1fr minmax(0, 5fr) 1fr;
+        grid-template-rows: repeat(6, auto);
+        max-height: none;
+        gap: 8px;
+        padding-bottom: 32px;
+    }
+
+    .version       { grid-area: 1 / 2 / 2 / 3; }
+    #title         { grid-area: 2 / 2 / 3 / 3; min-height: 220px; }
+    #projects-title-panel   { grid-area: 3 / 2 / 4 / 3; }
+    #projects-grid          { grid-area: 4 / 2 / 5 / 3; }
+    #contribute-title-panel { grid-area: 5 / 2 / 6 / 3; }
+    #contribute    { grid-area: 6 / 2 / 7 / 3; padding-bottom: 80px; }
+
+    #projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: none;
+        grid-auto-rows: auto;
+    }
+    #projects-featured,
+    #projects-recent,
+    #projects-indev,
+    #projects-upcoming {
+        grid-area: auto;
+    }
+    #projects-featured,
+    #projects-upcoming {
+        grid-column: 1 / -1;
+    }
+
+    .projects-body {
+        max-height: none;
+        overflow: visible;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+}
+
 @media (max-width: 800px) {
     .bento-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-columns: 12px minmax(0, 1fr) 12px;
+        gap: 8px;
     }
 
-    #title {
-        order: 1;
+    #title { min-height: 200px; }
+
+    #projects-title-panel,
+    #contribute-title-panel {
+        font-size: 1.5rem;
     }
 
-    #projects {
-        order: 2;
+    #projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+    #projects-featured,
+    #projects-recent,
+    #projects-indev,
+    #projects-upcoming {
+        grid-column: 1 / -1;
+    }
+
+    .projects-title {
+        flex-wrap: wrap;
+        font-size: 1.1rem;
+    }
+    .projects-name {
+        font-size: 1.1rem;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+    .projects-button {
+        font-size: 1.25rem;
     }
 
     #contribute {
-        order: 3;
-    }
-
-    .bento-grid section:first-child {
-        grid-row: auto;
+        font-size: 0.8rem;
     }
 }
