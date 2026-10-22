@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const ACCENTS = ['#0001']
+const ACCENTS = []
 const CELL = 60            // grid cell size in px
 const MAX_CHANCE = 0.75    // arrow chance per cell in the very corners
 const BASE_CHANCE = 0.015  // arrow chance in the middle of the screen
@@ -56,7 +56,7 @@ function ArrowField({ isDarkMode }) {
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
             ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr)
             const dark = darkRef.current
-            const base = dark ? '#ffffff' : '#000000'
+            const base = dark ? '#56b9ff' : '#000000'
             const baseAlpha = dark ? 0.02 : 0.02
             for (const a of arrowsRef.current) {
                 drawArrow(a, a.accent ?? base, a.accent ? 0.85 : baseAlpha)
