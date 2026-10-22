@@ -24,7 +24,7 @@ function App() {
         <div className="app-shell">
             <ArrowField isDarkMode={isDarkMode} />
             <main className="bento-grid">
-                <div class="version"><br/>v1.2</div>
+                <div class="version"><br/>v1.3</div>
                 <section class="bento-section" id="title" aria-label="title">
                     <img className="title-logo-outline" src={logoOutline} alt="" aria-hidden="true" />
                     <button
@@ -94,11 +94,14 @@ function App() {
                         <br/>
                         If you have any questions, feel free to reach out to us!
                     </p>
-                    <button class="contribute-button" type="button" aria-label="Contribute to Open Development Space">
-                        <a href="https://github.com/Open-Development-Space/.github/blob/main/profile/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
-                            Contribute on GitHub ↗
-                        </a>
-                    </button>
+                    <div id="contribute-footer">
+                        Contribute on GitHub 
+                        <button class="contribute-button" type="button" aria-label="Contribute to Open Development Space">
+                            <a href="https://github.com/Open-Development-Space/.github/blob/main/profile/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
+                                ↗
+                            </a>
+                        </button>
+                    </div>
                 </section>
             </main>
         </div>
