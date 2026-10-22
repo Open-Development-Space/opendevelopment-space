@@ -1,0 +1,26 @@
+[
+    {
+        "class": "featured",
+        "title": "opendevelopment-space",
+        "link": "https://github.com/Open-Development-Space/opendevelopment-space",
+        "description": "Home of the Open Development Space website.\n\nBuilt with React and Vite. The website is available on GitHub. We promise something of note will be put here in the future."
+    },
+    {
+        "class": "recent",
+        "title": "EMPTY",
+        "link": "https://github.com/Open-Development-Space",
+        "description": "There is nothing to show here yet, but there will be soon."
+    },
+    {
+        "class": "indev",
+        "title": "resKern",
+        "link": "https://github.com/Open-Development-Space/resKern",
+        "description": "Rust based kernel to learn with.\n\nBuilding a kernel in rust where there is no standard library to use so you have to learn a lot from scratch."
+    },
+    {
+        "class": "upcoming",
+        "title": "searCLI",
+        "link": "",
+        "description": "Simple CLI search engine."
+    }
+]

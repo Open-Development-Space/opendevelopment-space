@@ -44,13 +44,24 @@
 
 html {
     scroll-behavior: smooth;
-    filter: sepia(0.2);
+}
+a {
+    text-decoration: none;
 }
 
 line {
     border-bottom: 1px solid var(--ink);
     width: 100%;
     opacity: 0.2;
+}
+
+.arrow-field {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .bento-grid {
@@ -62,6 +73,7 @@ line {
     gap: 5px;
     padding: 0px;
     max-height: 100vh;
+    z-index: 1;
 }
 
 .bento-grid .bento-section {
@@ -141,6 +153,21 @@ line {
     font-size: 1.5rem;
     line-height: 0.7;
 }
+#title .title-button {
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 2rem;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    margin-left: 0.1em;
+    translate: 0px 4px;
+    transition: translate 0.1s ease-out;
+}
+#title .title-button:hover{
+    translate: 3px 1px;
+    transition: translate 0.1s ease-out;
+}
 
 #projects-title-panel {
     grid-area: 2 / 3 / 3 / 11;
@@ -196,7 +223,7 @@ line {
     color: var(--staticink);
 }
 
-#projects-title{
+.projects-title{
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
     display: flex;
@@ -204,14 +231,15 @@ line {
     width: auto;
     border-bottom: 1px solid var(--staticink50);
 }
-#projects-name{
+.projects-name{
     font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
     margin-left: 0.5em;
     display: flex;
     flex-direction: row;
 }
-#projects-body{
+.projects-body{
+    white-space: pre-line;
     max-height: calc(100%);
     overflow: scroll;
     padding-top: 0.5em;
@@ -221,17 +249,20 @@ line {
     mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
 }
 .projects-button{
+    display: inline-block;
     background: none;
     border: none;
     text-decoration: none;
+    color: var(--staticink);
     font-size: 1.5rem;
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    translate: 0px 4px;
     margin-left: auto;
-    transition: translate 0.25s ease-out;
+    transition: translate 0.1s ease-out;
 }
 .projects-button:hover{
-    translate: 3px -3px;
-    transition: translate 0.25s ease-out;
+    translate: 3px 1px;
+    transition: translate 0.1s ease-out;
 }
 
 #contribute-title-panel {
@@ -270,11 +301,11 @@ line {
     position: absolute;
     bottom: 16px;
     right: 16px;
-    transition: bottom 0.25s ease-out;
+    transition: bottom 0.1s ease-out;
 }
 #contribute button:hover {
     bottom: 18px;
-    transition: bottom 0.25s ease-out;
+    transition: bottom 0.1s ease-out;
 }
 
 .version{

@@ -3,6 +3,15 @@ import logoOutline from './assets/images/osd logo icon.svg'
 import sunIcon from './assets/images/sun.svg'
 import moonIcon from './assets/images/moon.svg'
 import { useEffect, useState } from 'react'
+import ArrowField from './ArrowField'
+import projects from './projects.json'
+
+const CLASS_LABELS = {
+    featured: 'Featured',
+    recent: 'Recent',
+    indev: 'InDev',
+    upcoming: 'Upcoming',
+}
 
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(false)
@@ -13,8 +22,9 @@ function App() {
 
     return (
         <div className="app-shell">
+            <ArrowField isDarkMode={isDarkMode} />
             <main className="bento-grid">
-                <div class="version"><br/>v0.16</div>
+                <div class="version"><br/>v1.0</div>
                 <section class="bento-section" id="title" aria-label="title">
                     <img className="title-logo-outline" src={logoOutline} alt="" aria-hidden="true" />
                     <button
@@ -28,7 +38,14 @@ function App() {
                     </button>
                     <div id="title-text">Open</div>
                     <div id="title-text">Development</div>
-                    <div id="space-text">.Space</div>
+                    <div id="space-text">
+                        .Space
+                        <button class="title-button" type="button" aria-label="View on GitHub">
+                            <a href="https://github.com/Open-Development-Space/" target="_blank" rel="noopener noreferrer">
+                                ↗
+                            </a>
+                        </button>
+                    </div>
 
                     <div id="desc"><br/>A space for everyone.</div>
                 </section>
@@ -36,62 +53,31 @@ function App() {
                 <section class="bento-section" id="projects-title-panel" aria-label="projects">
                     <div class="title">= Projects</div>
                 </section>
-                <section class="bento-section" id="projects-grid" aria-label="projects">
-                    <section class="projects-section" id="projects-featured">
-                        <div id="projects-title">
-                            Featured
-                            <div id="projects-name">opendevelopment-space</div>
-                            <button class="projects-button" type="button" aria-label="View on GitHub">
-                                <a href="https://github.com/Open-Development-Space/opendevelopment-space" target="_blank" rel="noopener noreferrer">
-                                    ↗
-                                </a>
-                            </button>
-                        </div>
-                        <div id="projects-body">
-                            Home of the Open Development Space website. <br/>
-                            <br/>
-                            Built with React and Vite. The website is available on GitHub. We promise something of note will be put here in the future.  
-                        </div>
-                    </section>
-                    <section class="projects-section" id="projects-recent">
-                        <div id="projects-title">
-                            Recent
-                            <div id="projects-name">EMPTY</div>
-                            <button class="projects-button" type="button" aria-label="View on GitHub">
-                                <a href="https://github.com/Open-Development-Space" target="_blank" rel="noopener noreferrer">
-                                    ↗
-                                </a>
-                            </button>
-                        </div>
-                        <div id="projects-body">
-                            There is nothing to show here yet, but there will be soon.
-                        </div>
-                    </section>
-                    <section class="projects-section" id="projects-indev">
-                        <div id="projects-title">
-                            InDev
-                            <div id="projects-name">resKern</div>
-                            <button class="projects-button" type="button" aria-label="View on GitHub">
-                                <a href="https://github.com/Open-Development-Space/resKern" target="_blank" rel="noopener noreferrer">
-                                    ↗
-                                </a>
-                            </button>
-                        </div>
-                        <div id="projects-body">
-                            Rust based kernel to learn with.
-                            <br/>
-                            <br/>Building a kernel in rust where there is no standard library to use so you have to learn a lot from scratch.
-                        </div>
-                    </section>
-                    <section class="projects-section" id="projects-upcoming">
-                        <div id="projects-title">
-                            Upcoming
-                            <div id="projects-name">searCLI</div>
-                        </div>
-                        <div id="projects-body">
-                            Simple CLI search engine.
-                        </div>
-                    </section>
+                <section className="bento-section" id="projects-grid" aria-label="projects">
+                    {projects.map(({ class: category, title, link, description }) => (
+                        <section
+                            key={`${category}-${title}`}
+                            className="projects-section"
+                            id={`projects-${category}`}
+                        >
+                            <div className="projects-title">
+                                {CLASS_LABELS[category] ?? category}
+                                <div className="projects-name">{title}</div>
+                                {link && (
+                                    <a
+                                        className="projects-button"
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`View ${title} on GitHub`}
+                                    >
+                                        ↗
+                                    </a>
+                                )}
+                            </div>
+                            <div className="projects-body">{description}</div>
+                        </section>
+                    ))}
                 </section>
 
                 <section class="bento-section" id="contribute-title-panel" aria-label="projects">
