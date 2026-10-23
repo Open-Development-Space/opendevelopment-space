@@ -241,15 +241,65 @@ line {
     display: flex;
     flex-direction: row;
 }
-.projects-body{
+.projects-body {
     white-space: pre-line;
-    max-height: calc(100%);
-    overflow: scroll;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-top: 0.5em;
     font-family: 'BodyFont', 'Trebuchet MS', sans-serif;
     font-size: 0.85rem;
-    -webkit-mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+
+    /* hide scrollbars everywhere */
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;
+}
+.projects-body::-webkit-scrollbar {
+    display: none;                  /* Chromium / Safari */
+}
+
+/* indicator lives on the project section, not the scrolling element */
+#projects-featured,
+#projects-recent,
+#projects-indev,
+#projects-upcoming {
+    position: relative;
+}
+
+/* fade only while there's more content below */
+[data-scrollable]:not([data-at-end]) > .projects-body {
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+/* small chevron */
+[data-scrollable]::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    bottom: 6px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--staticink);
+    border-bottom: 2px solid var(--staticink);
+    transform: rotate(45deg);
+    opacity: 0.6;
+    pointer-events: none;
+    animation: scroll-hint 1.4s ease-in-out infinite;
+    transition: opacity 0.2s;
+}
+[data-scrollable][data-at-end]::after {
+    opacity: 0;
+    animation: none;
+}
+@keyframes scroll-hint {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-scrollable]::after { animation: none; }
 }
 .projects-button{
     display: inline-block;
@@ -291,24 +341,32 @@ line {
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
 }
 
-#contribute button {
+#contribute #contribute-footer{
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
-    text-decoration: none;
-    font-size: 1.1rem;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 4px;
-    background-color: var(--staticink);
-    color: var(--coral);
-    cursor: pointer;
+    font-size: 1rem;
+    color: var(--staticink);
     position: absolute;
+    width: calc(100% - 16px);
+    translate: 0px 3px;
     bottom: 16px;
+}
+
+#contribute button {
+    position: absolute;
+    font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    text-decoration: none;
+    translate: 4px 4px;
+    border: none;
+    background: none;
+    cursor: pointer;
     right: 16px;
-    transition: bottom 0.1s ease-out;
+    bottom: -14px;
+    transition: translate 0.1s ease-out;
 }
 #contribute button:hover {
-    bottom: 18px;
-    transition: bottom 0.1s ease-out;
+    translate: 7px 1px;
+    transition: translate 0.1s ease-out;
 }
 
 .version{
