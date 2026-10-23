@@ -1,0 +1,30 @@
+
+name: Deploy Worker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # Install dependencies and build the Vite React application.
+      # Vite outputs the production build to the dist/ directory by default.
+      - name: Build
+        run: npm ci && npm run build
+
+      # Deploy the Worker using Wrangler.
+      # Configure CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID
+      # in your GitHub repository's Settings > Secrets and variables > Actions.
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
