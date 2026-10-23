@@ -18,13 +18,25 @@ function App() {
 
     useEffect(() => {
         document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light'
+        document.querySelectorAll('.projects-body').forEach((body) => {
+            const section = body.parentElement;
+            const update = () => {
+                const scrollable = body.scrollHeight > body.clientHeight + 1;
+                const atEnd = body.scrollTop + body.clientHeight >= body.scrollHeight - 2;
+                section.toggleAttribute('data-scrollable', scrollable);
+                section.toggleAttribute('data-at-end', atEnd);
+            };
+            body.addEventListener('scroll', update, { passive: true });
+            new ResizeObserver(update).observe(body);
+            update();
+        });
     }, [isDarkMode])
 
     return (
         <div className="app-shell">
             <ArrowField isDarkMode={isDarkMode} />
             <main className="bento-grid">
-                <div class="version"><br/>v1.3</div>
+                <div class="version"><br/>v1.4</div>
                 <section class="bento-section" id="title" aria-label="title">
                     <img className="title-logo-outline" src={logoOutline} alt="" aria-hidden="true" />
                     <button
