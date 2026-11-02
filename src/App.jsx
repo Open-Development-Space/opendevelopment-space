@@ -13,6 +13,91 @@ const CLASS_LABELS = {
     upcoming: 'Upcoming',
 }
 
+const ROTATION_INTERVAL = 5000
+const MANUAL_PAUSE_DURATION = 10000
+
+const projectsByClass = projects.reduce((groups, project) => {
+    groups[project.class] ??= []
+    groups[project.class].push(project)
+    return groups
+}, {})
+
+function ProjectCarousel({ category, categoryProjects }) {
+    const [activeIndex, setActiveIndex] = useState(0)
+    const [pauseUntil, setPauseUntil] = useState(0)
+    const [isHovered, setIsHovered] = useState(false)
+
+    useEffect(() => {
+        if (categoryProjects.length < 2 || isHovered) return
+
+        const remainingPause = pauseUntil - Date.now()
+        const delay = remainingPause > 0 ? remainingPause : ROTATION_INTERVAL
+        const timer = window.setTimeout(() => {
+            if (remainingPause > 0) {
+                setPauseUntil(0)
+            } else {
+                setActiveIndex((index) => (index + 1) % categoryProjects.length)
+            }
+        }, delay)
+
+        return () => window.clearTimeout(timer)
+    }, [activeIndex, categoryProjects.length, isHovered, pauseUntil])
+
+    return (
+        <section
+            className="projects-section"
+            id={`projects-${category}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div className="projects-slides">
+                {categoryProjects.map((project, index) => (
+                    <div
+                        key={project.title}
+                        className={`project-slide${index === activeIndex ? ' is-active' : ''}`}
+                        aria-hidden={index !== activeIndex}
+                    >
+                        <div className="projects-title">
+                            {CLASS_LABELS[category] ?? category}
+                            <div className="projects-name">{project.title}</div>
+                            {project.link && (
+                                <a
+                                    className="projects-button"
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`View ${project.title} on GitHub`}
+                                    tabIndex={index === activeIndex ? 0 : -1}
+                                >
+                                    ↗
+                                </a>
+                            )}
+                        </div>
+                        <div className="projects-body">{project.description}</div>
+                    </div>
+                ))}
+            </div>
+            {categoryProjects.length > 1 && (
+                <div className="projects-indicators" role="group" aria-label={`${CLASS_LABELS[category] ?? category} projects`}>
+                    {categoryProjects.map((project, index) => (
+                        <button
+                            key={project.title}
+                            className="projects-indicator"
+                            type="button"
+                            aria-label={`Show ${project.title}`}
+                            aria-pressed={index === activeIndex}
+                            onClick={() => {
+                                setActiveIndex(index)
+                                setPauseUntil(Date.now() + MANUAL_PAUSE_DURATION)
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
+        </section>
+    )
+}
+
 function App() {
     const [isDarkMode, setIsDarkMode] = useState(false)
 
@@ -36,7 +121,7 @@ function App() {
         <div className="app-shell">
             <ArrowField isDarkMode={isDarkMode} />
             <main className="bento-grid">
-                <div class="version"><br/>v1.5</div>
+                <div class="version"><br/>v2.0</div>
                 <section class="bento-section" id="title" aria-label="title">
                     <img className="title-logo-outline" src={logoOutline} alt="" aria-hidden="true" />
                     <button
@@ -66,29 +151,12 @@ function App() {
                     <div class="title">= Projects</div>
                 </section>
                 <section className="bento-section" id="projects-grid" aria-label="projects">
-                    {projects.map(({ class: category, title, link, description }) => (
-                        <section
-                            key={`${category}-${title}`}
-                            className="projects-section"
-                            id={`projects-${category}`}
-                        >
-                            <div className="projects-title">
-                                {CLASS_LABELS[category] ?? category}
-                                <div className="projects-name">{title}</div>
-                                {link && (
-                                    <a
-                                        className="projects-button"
-                                        href={link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label={`View ${title} on GitHub`}
-                                    >
-                                        ↗
-                                    </a>
-                                )}
-                            </div>
-                            <div className="projects-body">{description}</div>
-                        </section>
+                    {Object.entries(projectsByClass).map(([category, categoryProjects]) => (
+                        <ProjectCarousel
+                            key={category}
+                            category={category}
+                            categoryProjects={categoryProjects}
+                        />
                     ))}
                 </section>
 
