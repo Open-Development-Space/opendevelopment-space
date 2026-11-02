@@ -121,7 +121,7 @@ function App() {
         <div className="app-shell">
             <ArrowField isDarkMode={isDarkMode} />
             <main className="bento-grid">
-                <div class="version"><br/>v2.0</div>
+                <div class="version"><br/>v1.1.0</div>
                 <section class="bento-section" id="title" aria-label="title">
                     <img className="title-logo-outline" src={logoOutline} alt="" aria-hidden="true" />
                     <button
