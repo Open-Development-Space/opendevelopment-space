@@ -46,6 +46,10 @@ html {
     scroll-behavior: smooth;
 }
 
+*, *::before, *::after {
+    transition: all 0.3s ease-in-out;
+}
+
 a {
     text-decoration: none;
 }
@@ -226,6 +230,31 @@ line {
     color: var(--staticink);
 }
 
+.projects-slides {
+    display: grid;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+}
+.project-slide {
+    position: relative;
+    grid-area: 1 / 1;
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 300ms ease-in-out, visibility 0s linear 300ms;
+}
+.project-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 300ms ease-in-out;
+}
+
 .projects-title{
     font-family: 'TitleFont', 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
@@ -257,6 +286,29 @@ line {
 }
 .projects-body::-webkit-scrollbar {
     display: none;                  /* Chromium / Safari */
+}
+.projects-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 10px;
+}
+.projects-indicator {
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    border: 1px solid var(--staticink);
+    border-radius: 50%;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+}
+.projects-indicator[aria-pressed='true'] {
+    background: var(--staticink);
+}
+.projects-indicator:focus-visible {
+    outline: 2px solid var(--staticink);
+    outline-offset: 3px;
 }
 
 /* indicator lives on the project section, not the scrolling element */
@@ -300,6 +352,8 @@ line {
 
 @media (prefers-reduced-motion: reduce) {
     [data-scrollable]::after { animation: none; }
+    .project-slide,
+    .project-slide.is-active { transition: none; }
 }
 .projects-button{
     display: inline-block;
