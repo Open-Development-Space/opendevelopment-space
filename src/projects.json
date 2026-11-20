@@ -8,14 +8,14 @@
     {
         "class": "recent",
         "title": "",
-        "link": "https://github.com/Open-Development-Space",
-        "description": "There is nothing to show here yet, but there will be soon."
+        "link": "https://github.com/Open-Development-Space/",
+        "description": "There is nothing to show here, but there will be soon."
     },
     {
         "class": "indev",
-        "title": "srch",
-        "link": "https://github.com/Open-Development-Space/srch",
-        "description": "srch is a simple CLI search engine. Ask any query and get the top result and more.\n\nAsk questions. Get the answer."
+        "title": "modernDash",
+        "link": "https://github.com/Open-Development-Space/modernDash",
+        "description": "Built to be modular. Built to be easy.\n\nA full-screen cli dashboard built with rich python. A welcome banner, an animated ASCII aquarium, the current conditions with an hourly rain bar chart, a 7-day forecast and a clock. Weather comes from Open-Meteo (https://open-meteo.com)."
     },
     {
         "class": "indev",
@@ -25,8 +25,8 @@
     },
     {
         "class": "upcoming",
-        "title": "",
-        "link": "",
-        "description": "There is nothing to show here yet, but there will be soon."
+        "title": "srch",
+        "link": "https://github.com/Open-Development-Space/srch",
+        "description": "srch is a simple CLI search engine. Query anything and get the top result and more."
     }
 ]
